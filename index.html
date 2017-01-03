@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>SPA Weather</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="scripts/vendor.js"></script>
+	<script src="scripts/main.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body ng-controller="mainCtrl">
+	<header>
+		<form class='form-setTown'>
+			<div class="form-setTown__content">Выберите город:<br>
+				<select name="town" class='form-setTown__select' ng-model='setTown'>
+					<option ng-repeat="option in dataTown" value="{{option.id}}" class='form-setTown__option' ng-bind="option.name"></option>
+				</select>
+			</div>
+		</form>
+	</header>
+	<main ng-view>
+	</main>
+	<footer ng-controller="calendar">
+		<div class="delimiter">
+			<img src = 'img/line.png' alt="delimiter" />
+		</div>
+		<div class="calendarTemp">
+			<div class="box-temp" ng-repeat="val in calendar" ng-click="selectDay(val.id)" style="background:url('./img/{{val.icon}}_min.jpg') no-repeat;background-position:center">
+				<div class="box-temp__date" ng-bind="val.date">29 ноября</div>
+				<div class="box-temp__temp" ng-bind="val.temp">28°</div>
+				<div class="box-temp__icon"><img src="http://openweathermap.org/img/w/{{val.icon}}.png"></img></div>
+			</div>
+		</div>
+		<div class="delimiter">
+			<img src = 'img/line.png' alt="delimiter"></img>
+		</div>
+	</footer>
+</body>
+</html>
